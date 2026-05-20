@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ace Alarms & Security Systems | Sussex & Surrey</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red: #C0392B;
+    --red-dark: #a93226;
+    --black: #111111;
+    --white: #FFFFFF;
+    --off-white: #F5F4F0;
+    --muted: #5a5a5a;
+    --border: #DEDBD4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    background: var(--white);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── EMERGENCY BAR ── */
+  .emergency-bar {
+    background: var(--red);
+    color: var(--white);
+    text-align: center;
+    padding: 8px 1rem;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .emergency-bar a { color: var(--white); font-weight: 700; }
+  .emergency-bar .sep { margin: 0 10px; opacity: 0.4; }
+  .emergency-bar .hide-mobile { display: inline; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .logo-shield {
+    width: 30px;
+    height: 34px;
+    background: var(--red);
+    clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-shield svg { width: 15px; height: 15px; }
+
+  .logo-text-wrap { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .logo-sub {
+    color: #888;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* Desktop nav links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+  .nav-links a {
+    color: #bbb;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0 13px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--white); border-bottom-color: var(--red); }
+  .nav-cta {
+    background: var(--red) !important;
+    color: var(--white) !important;
+    padding: 9px 18px !important;
+    height: auto !important;
+    font-weight: 600 !important;
+    margin-left: 10px;
+    border-bottom: none !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border-top: 1px solid #222;
+    z-index: 199;
+    flex-direction: column;
+    padding: 12px 0 20px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: #ccc;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 14px 24px;
+    border-bottom: 1px solid #1a1a1a;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--white); }
+  .mobile-menu .mobile-cta {
+    margin: 12px 24px 0;
+    background: var(--red);
+    color: var(--white) !important;
+    text-align: center;
+    padding: 14px 24px !important;
+    font-weight: 600 !important;
+    border-bottom: none !important;
+  }
+
+  /* ── FLOATING CONTACT ── */
+  .float-contact {
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .float-btn {
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.45);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .float-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+  .float-tel {
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .float-tel:hover { background: #222; transform: translateY(-2px); }
+
+  /* ── SPLIT HERO ── */
+  .split-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 92px);
+    position: relative;
+  }
+
+  .split-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 70px 60px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.4s;
+  }
+  .split-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .split-panel:hover::before { opacity: 1; }
+  .split-panel > * { position: relative; z-index: 1; }
+
+  .split-panel-residential {
+    background: var(--off-white);
+    border-right: 1px solid var(--border);
+  }
+  .split-panel-residential::before {
+    background: linear-gradient(135deg, #f0ece4, #e8e4dc);
+  }
+  .split-panel-commercial { background: var(--black); }
+  .split-panel-commercial::before {
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  }
+
+  .panel-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+  .split-panel-residential .panel-eyebrow { color: var(--red); }
+  .split-panel-commercial .panel-eyebrow { color: #888; }
+
+  .panel-heading {
+    font-size: clamp(28px, 3vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  .split-panel-residential .panel-heading { color: var(--black); }
+  .split-panel-commercial .panel-heading { color: var(--white); }
+  .panel-heading span { color: var(--red); }
+
+  .panel-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 360px;
+    font-weight: 300;
+  }
+  .split-panel-residential .panel-desc { color: var(--muted); }
+  .split-panel-commercial .panel-desc { color: #999; }
+
+  .panel-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 32px;
+  }
+  .service-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 11px;
+    border: 1px solid;
+    letter-spacing: 0.3px;
+  }
+  .split-panel-residential .service-pill { border-color: #ccc; color: var(--muted); }
+  .split-panel-commercial .service-pill { border-color: #444; color: #aaa; }
+
+  .panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: var(--red);
+    color: var(--white);
+    max-width: fit-content;
+  }
+  .panel-btn:hover { background: var(--red-dark); }
+  .panel-btn svg { transition: transform 0.25s; }
+  .panel-btn:hover svg { transform: translateX(4px); }
+
+  .split-divider {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: var(--white);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--black);
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-item svg { color: var(--red); flex-shrink: 0; }
+
+  /* ── ABOUT ── */
+  .about-wrap { background: var(--off-white); border-bottom: 1px solid var(--border); }
+  .about-strip {
+    padding: 64px 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+  .section-heading {
+    font-size: clamp(24px, 2.5vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .section-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-box {
+    background: var(--white);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    padding: 70px 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--white);
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 3px solid transparent;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .service-card:hover { background: var(--off-white); border-top-color: var(--red); }
+  .service-card.featured { border-top-color: var(--red); }
+
+  .service-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+    flex-shrink: 0;
+  }
+  .service-card:hover .service-icon,
+  .service-card.featured .service-icon { background: rgba(192,57,43,0.1); }
+  .service-icon svg { color: var(--red); }
+
+  .service-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--red);
+    background: rgba(192,57,43,0.08);
+    padding: 3px 8px;
+    width: fit-content;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    flex: 1;
+  }
+  .service-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  /* ── PROCESS ── */
+  .process-section {
+    background: var(--black);
+    padding: 70px 2rem;
+  }
+  .process-inner { max-width: 1200px; margin: 0 auto; }
+  .process-header { margin-bottom: 48px; }
+  .process-header .section-eyebrow { color: #666; }
+  .process-header .section-eyebrow::before { background: #444; }
+  .process-header .section-heading { color: var(--white); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: #2a2a2a;
+  }
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .step-num {
+    width: 54px;
+    height: 54px;
+    background: var(--black);
+    border: 2px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 18px;
+    flex-shrink: 0;
+    transition: all 0.25s;
+  }
+  .process-step:hover .step-num { border-color: var(--red); background: rgba(192,57,43,0.1); }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 13px;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* ── MANUFACTURERS ── */
+  .manufacturers-section {
+    background: var(--off-white);
+    padding: 56px 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .manufacturers-inner { max-width: 1200px; margin: 0 auto; }
+  .manufacturers-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .manufacturers-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .manufacturer-box {
+    background: var(--white);
+    padding: 20px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background 0.2s;
+  }
+  .manufacturer-box:hover { background: var(--off-white); }
+  .manufacturer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .manufacturer-cat {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section {
+    padding: 70px 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .reviews-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .reviews-score-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .score-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .score-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+  .score-detail { display: flex; flex-direction: column; gap: 3px; }
+  .score-stars { color: var(--red); font-size: 14px; letter-spacing: 2px; }
+  .score-source { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .review-card {
+    background: var(--white);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .review-stars { color: var(--red); font-size: 13px; letter-spacing: 2px; }
+  .review-text {
+    font-size: 14px;
+    color: var(--black);
+    line-height: 1.7;
+    font-style: italic;
+    font-weight: 300;
+    flex: 1;
+  }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .review-type { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--red); }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--red);
+    padding: 60px 2rem;
+    text-align: center;
+  }
+  .cta-band .section-eyebrow { color: rgba(255,255,255,0.6); justify-content: center; }
+  .cta-band .section-eyebrow::before { background: rgba(255,255,255,0.4); }
+  .cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .cta-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: var(--white);
+    color: var(--red);
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-white:hover { background: var(--off-white); }
+  .btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    color: #888;
+    padding: 56px 2rem 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 44px;
+    max-width: 1200px;
+    margin: 0 auto 44px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-desc { font-size: 13px; font-weight: 300; line-height: 1.8; color: #666; max-width: 260px; }
+  .footer-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a { font-size: 13px; color: #666; font-weight: 300; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-contact-item {
+    display: flex;
+    gap: 9px;
+    font-size: 13px;
+    color: #666;
+    font-weight: 300;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .footer-contact-item svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #3a3a3a;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .cert-badge {
+    display: inline-block;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    padding: 4px 9px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+    margin-left: 6px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .split-panel-residential .panel-eyebrow { animation: fadeInUp 0.5s ease 0.1s both; }
+  .split-panel-residential .panel-heading { animation: fadeInUp 0.5s ease 0.2s both; }
+  .split-panel-residential .panel-desc    { animation: fadeInUp 0.5s ease 0.3s both; }
+  .split-panel-residential .panel-services{ animation: fadeInUp 0.5s ease 0.35s both; }
+  .split-panel-residential .panel-btn     { animation: fadeInUp 0.5s ease 0.4s both; }
+  .split-panel-commercial .panel-eyebrow  { animation: fadeInUp 0.5s ease 0.2s both; }
+  .split-panel-commercial .panel-heading  { animation: fadeInUp 0.5s ease 0.3s both; }
+  .split-panel-commercial .panel-desc     { animation: fadeInUp 0.5s ease 0.4s both; }
+  .split-panel-commercial .panel-services { animation: fadeInUp 0.5s ease 0.45s both; }
+  .split-panel-commercial .panel-btn      { animation: fadeInUp 0.5s ease 0.5s both; }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — tablet (≤900px)
+  ══════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero stacks vertically */
+    .split-hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .split-panel {
+      padding: 56px 32px;
+      min-height: 50vh;
+    }
+    .split-divider { display: none; }
+    .split-panel-residential { border-right: none; border-bottom: 1px solid var(--border); }
+    .panel-desc { max-width: 100%; }
+
+    /* About */
+    .about-strip {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 48px 1.5rem;
+    }
+
+    /* Services 2 col */
+    .services-section { padding: 56px 1.5rem; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Process — scroll row */
+    .process-steps {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .process-steps::before { display: none; }
+    .process-step {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 0;
+    }
+    .step-num { margin-bottom: 0; flex-shrink: 0; }
+    .step-content { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+
+    /* Manufacturers 3 col */
+    .manufacturers-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* Reviews 1 col */
+    .reviews-section { padding: 56px 1.5rem; }
+    .reviews-grid { grid-template-columns: 1fr; }
+
+    /* Footer 2 col */
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE — mobile (≤600px)
+  ══════════════════════════════════════ */
+  @media (max-width: 600px) {
+    /* Emergency bar — minimal */
+    .emergency-bar .hide-mobile { display: none; }
+    .emergency-bar { font-size: 11px; padding: 7px 1rem; }
+
+    nav { padding: 0 1rem; height: 56px; }
+    .mobile-menu { top: 56px; }
+
+    /* Float — just one button on mobile */
+    .float-tel { display: none; }
+    .float-contact { bottom: 16px; right: 12px; }
+    .float-btn { padding: 13px 20px; font-size: 14px; }
+
+    /* Hero panels full height stacked */
+    .split-panel { padding: 44px 20px; min-height: 55vh; }
+    .panel-heading { font-size: 32px; }
+    .panel-btn { width: 100%; justify-content: center; }
+
+    /* Trust bar wraps to 2x2 */
+    .trust-item { padding: 12px 14px; font-size: 10px; border-right: none; border-bottom: 1px solid var(--border); width: 50%; justify-content: center; }
+    .trust-item:nth-child(odd) { border-right: 1px solid var(--border); }
+
+    /* About */
+    .about-strip { padding: 40px 1.25rem; gap: 28px; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat-box { padding: 22px 16px; }
+    .stat-num { font-size: 30px; }
+
+    /* Services 1 col */
+    .services-section { padding: 44px 1.25rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 24px 20px; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+
+    /* Process */
+    .process-section { padding: 44px 1.25rem; }
+    .step-num { width: 44px; height: 44px; font-size: 17px; }
+
+    /* Manufacturers 2 col */
+    .manufacturers-section { padding: 40px 1.25rem; }
+    .manufacturers-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Reviews */
+    .reviews-section { padding: 44px 1.25rem; }
+    .reviews-top { flex-direction: column; align-items: flex-start; }
+    .score-card { padding: 14px 18px; }
+    .score-big { font-size: 32px; }
+
+    /* CTA */
+    .cta-band { padding: 48px 1.25rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .btn-white, .btn-outline-white { width: 100%; justify-content: center; max-width: 320px; }
+
+    /* Footer stacks */
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; padding: 0 0 32px; }
+    footer { padding: 44px 1.25rem 24px; }
+    .footer-desc { max-width: 100%; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Emergency Bar -->
+<div class="emergency-bar">
+  24/7 Emergency &nbsp;<span class="sep">|</span>&nbsp;
+  <a href="tel:01444247960">01444 247960</a>
+  <span class="sep hide-mobile">|</span>
+  <span class="hide-mobile"><a href="mailto:info@ace-alarms.co.uk">info@ace-alarms.co.uk</a></span>
+  <span class="sep hide-mobile">|</span>
+  <span class="hide-mobile">Sussex &amp; Surrey</span>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-shield">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="logo-text-wrap">
+      <span class="logo-name">Ace Alarms</span>
+      <span class="logo-sub">&amp; Security Systems</span>
+    </div>
+  </div>
+
+  <!-- Desktop links -->
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Residential</a>
+    <a href="#">Commercial</a>
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Reviews</a>
+    <a href="#" class="nav-cta">Get a Quote</a>
+  </div>
+
+  <!-- Hamburger -->
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#">Residential</a>
+  <a href="#">Commercial</a>
+  <a href="#">Services</a>
+  <a href="#">About</a>
+  <a href="#">Reviews</a>
+  <a href="#" class="mobile-cta">Get a Free Quote</a>
+</div>
+
+<!-- Floating Contact -->
+<div class="float-contact">
+  <a href="tel:01444247960" class="float-tel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    01444 247960
+  </a>
+  <a href="#" class="float-btn">
+    Free Survey
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+</div>
+
+<!-- SPLIT HERO -->
+<section class="split-hero">
+  <div class="split-panel split-panel-residential">
+    <div class="panel-eyebrow">For Homeowners</div>
+    <h1 class="panel-heading">Protecting your<br><span>home</span> &amp; family.</h1>
+    <p class="panel-desc">Wired and wireless alarm systems, CCTV and access control for homes across Sussex and Surrey. Installed by our own engineers.</p>
+    <div class="panel-services">
+      <span class="service-pill">Intruder Alarms</span>
+      <span class="service-pill">CCTV</span>
+      <span class="service-pill">Smart Monitoring</span>
+      <span class="service-pill">Maintenance</span>
+    </div>
+    <a href="#" class="panel-btn">
+      Residential Services
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="split-divider">OR</div>
+
+  <div class="split-panel split-panel-commercial">
+    <div class="panel-eyebrow">For Businesses</div>
+    <h1 class="panel-heading">Security that meets<br><span>compliance.</span></h1>
+    <p class="panel-desc">Fire alarms, intruder systems and CCTV for businesses and multi-site operators. SSAIB certified throughout.</p>
+    <div class="panel-services">
+      <span class="service-pill">Fire Alarms</span>
+      <span class="service-pill">Intruder Systems</span>
+      <span class="service-pill">Access Control</span>
+      <span class="service-pill">Multi-Site Contracts</span>
+    </div>
+    <a href="#" class="panel-btn">
+      Commercial Services
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    SSAIB Certified
+  </div>
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    BS 5839-1 Fire
+  </div>
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    BS EN 50131 Intruder
+  </div>
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    24/7 Engineer Callout
+  </div>
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    No Subcontractors
+  </div>
+</div>
+
+<!-- About -->
+<div class="about-wrap">
+  <div class="about-strip">
+    <div>
+      <div class="section-eyebrow">Who We Are</div>
+      <h2 class="section-heading">Independent specialists.<br>Your engineers, every time.</h2>
+      <p class="section-body">Ace Alarms &amp; Security Systems is an independent, SSAIB-certified security company serving homes and businesses across Sussex and Surrey.</p>
+      <p class="section-body">Every installation and callout is carried out by our own trained engineers — never subcontractors. When you call, you speak to someone who knows your system.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num">24<span>/7</span></div><div class="stat-label">Engineer Response</div></div>
+      <div class="stat-box"><div class="stat-num">100<span>%</span></div><div class="stat-label">Own Engineers</div></div>
+      <div class="stat-box"><div class="stat-num">SS<span>AIB</span></div><div class="stat-label">Certified Works</div></div>
+      <div class="stat-box"><div class="stat-num">5<span>★</span></div><div class="stat-label">Customer Reviews</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<div class="services-section">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-heading">Our services</h2>
+    </div>
+    <a href="#" style="font-size:13px;font-weight:500;color:var(--red);display:flex;align-items:center;gap:4px;white-space:nowrap;">All services <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card featured">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+      <div class="service-tag">BS EN 50131</div>
+      <div class="service-title">Intruder Alarm Systems</div>
+      <div class="service-desc">Insurance-approved intruder alarms for homes and businesses. Wired, wireless and hybrid systems from Pyronix, Texecom and HKC.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <div class="service-card featured">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="service-tag">BS 5839-1</div>
+      <div class="service-title">Fire Alarm Systems</div>
+      <div class="service-desc">Conventional and addressable fire systems designed and maintained to BS 5839-1. Compliance certificates issued on completion.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+      <div class="service-title">CCTV Systems</div>
+      <div class="service-desc">HD and IP camera systems with remote viewing. From single cameras to full multi-site surveillance networks.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+      <div class="service-title">Access Control</div>
+      <div class="service-desc">Keypad, fob and smart card access from Paxton. Door entry, gate control and multi-door solutions for offices and commercial buildings.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="service-title">Maintenance Contracts</div>
+      <div class="service-desc">Annual service plans for all system types. Priority callout, compliance documentation and a dedicated contact who knows your setup.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="service-tag">24/7</div>
+      <div class="service-title">24/7 Emergency Response</div>
+      <div class="service-desc">Real engineers, not a call centre. Our team is available around the clock, 365 days a year — for callouts and faults alike.</div>
+      <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Process -->
+<section class="process-section">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-heading">From enquiry to installation —<br>here's what to expect.</h2>
+    </div>
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Get in Touch</div>
+          <div class="step-desc">Call, email or fill in our form. We'll discuss your needs and arrange a convenient time to visit.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Site Survey</div>
+          <div class="step-desc">One of our engineers visits your property. No obligation. We assess the site and understand what you need.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Your Quote</div>
+          <div class="step-desc">A clear, itemised quote. No hidden costs, no upselling. You decide when you're ready.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Installation</div>
+          <div class="step-desc">Our own engineers carry out the full installation. Tidy, efficient and fully tested before we leave.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Handover &amp; Support</div>
+          <div class="step-desc">We walk you through the system, provide documentation and remain on call 24/7 after handover.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Manufacturers -->
+<section class="manufacturers-section">
+  <div class="manufacturers-inner">
+    <div class="manufacturers-label">Approved installers for leading manufacturers</div>
+    <div class="manufacturers-grid">
+      <div class="manufacturer-box"><div class="manufacturer-name">Pyronix</div><div class="manufacturer-cat">Intruder Alarms</div></div>
+      <div class="manufacturer-box"><div class="manufacturer-name">Texecom</div><div class="manufacturer-cat">Intruder Alarms</div></div>
+      <div class="manufacturer-box"><div class="manufacturer-name">HKC</div><div class="manufacturer-cat">Intruder Alarms</div></div>
+      <div class="manufacturer-box"><div class="manufacturer-name">Paxton</div><div class="manufacturer-cat">Access Control</div></div>
+      <div class="manufacturer-box"><div class="manufacturer-name">Hikvision</div><div class="manufacturer-cat">CCTV</div></div>
+      <div class="manufacturer-box"><div class="manufacturer-name">Advanced</div><div class="manufacturer-cat">Fire Alarms</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews-section">
+  <div class="reviews-top">
+    <div>
+      <div class="section-eyebrow">What Our Customers Say</div>
+      <h2 class="section-heading">Trusted by homes &amp;<br>businesses across Sussex.</h2>
+    </div>
+    <a href="#" style="font-size:13px;font-weight:500;color:var(--red);display:flex;align-items:center;gap:4px;white-space:nowrap;align-self:flex-end;">All reviews <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="reviews-score-bar">
+    <div class="score-card">
+      <div class="score-big">5.0</div>
+      <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Google Reviews</div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-big">10</div>
+      <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Checkatrade Score</div></div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Absolutely brilliant from start to finish. The engineer was professional, tidy and took the time to explain everything. Would not hesitate to recommend."</div>
+      <div><div class="review-author">S. Hartley</div><div class="review-type">Residential · Burgess Hill</div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"We've used Ace Alarms across three of our sites now. Reliable, responsive and they actually answer the phone — which matters more than you'd think."</div>
+      <div><div class="review-author">M. Connolly</div><div class="review-type">Commercial · Multi-Site</div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Prompt response to our alarm fault, engineer on site within two hours. Sorted, tested and all paperwork updated. Exactly what you want from a maintenance contract."</div>
+      <div><div class="review-author">T. Brennan</div><div class="review-type">Commercial · Checkatrade</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<section class="cta-band">
+  <div class="section-eyebrow">Get Started</div>
+  <h2 class="cta-heading">Ready to protect your property?</h2>
+  <p class="cta-sub">Book a free, no-obligation site survey. Our engineer comes to you, assesses your needs and provides a clear quote — no pressure, no hard sell.</p>
+  <div class="cta-buttons">
+    <button class="btn-white">Request a Free Survey</button>
+    <a href="tel:01444247960" class="btn-outline-white">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      01444 247960
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="logo-shield" style="width:28px;height:32px;"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="width:13px;height:13px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="logo-text-wrap"><span class="logo-name" style="font-size:15px;">Ace Alarms</span><span class="logo-sub">&amp; Security Systems</span></div>
+      </div>
+      <p class="footer-desc">SSAIB-certified security specialists serving homes and businesses across Sussex and Surrey. Our own engineers, every time.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <div class="footer-links">
+        <a href="#">Intruder Alarms</a>
+        <a href="#">Fire Alarms</a>
+        <a href="#">CCTV Systems</a>
+        <a href="#">Access Control</a>
+        <a href="#">Maintenance</a>
+        <a href="#">24/7 Response</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Residential</a>
+        <a href="#">Commercial</a>
+        <a href="#">Reviews</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>01444 247960</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@ace-alarms.co.uk</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Burgess Hill, West Sussex</div>
+      <div style="margin-top:14px;font-size:10px;color:#3a3a3a;letter-spacing:0.5px;text-transform:uppercase;font-weight:500;">Sussex &amp; Surrey · 1 hour from Burgess Hill</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 Ace Alarms &amp; Security Systems. All rights reserved.</div>
+    <div>
+      <span class="cert-badge">SSAIB</span>
+      <span class="cert-badge">BS 5839-1</span>
+      <span class="cert-badge">BS EN 50131</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
