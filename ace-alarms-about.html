@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us | Ace Alarms & Security Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -13,8 +13,8 @@
     --off-white: #F5F4F0; --muted: #5a5a5a; --border: #DEDBD4;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
-  h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+  body { font-family: 'Montserrat', sans-serif; color: var(--black); background: var(--white); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
   a { text-decoration: none; color: inherit; }
 
   /* ── EMERGENCY BAR ── */
@@ -29,7 +29,7 @@
   .logo-shield { width: 30px; height: 34px; background: var(--red); clip-path: polygon(0 0,100% 0,100% 72%,50% 100%,0 72%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .logo-shield svg { width: 15px; height: 15px; }
   .logo-text-wrap { display: flex; flex-direction: column; line-height: 1; }
-  .logo-name { font-family: 'Playfair Display', serif; color: var(--white); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
+  .logo-name { font-family: 'Montserrat', sans-serif; color: var(--white); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
   .logo-sub { color: #888; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-top: 2px; }
   .nav-links { display: flex; align-items: center; }
   .nav-links a { color: #bbb; font-size: 13px; font-weight: 400; padding: 0 13px; height: 60px; display: flex; align-items: center; letter-spacing: 0.3px; transition: color 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
@@ -57,8 +57,8 @@
   /* ── SHARED TYPOGRAPHY ── */
   .section-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
   .section-eyebrow::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); flex-shrink: 0; }
-  .section-heading { font-size: clamp(24px, 2.5vw, 34px); font-weight: 700; line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 18px; }
-  .section-body { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+  .section-heading { font-size: clamp(24px, 2.5vw, 34px); font-weight: 700; line-height: 1.2; letter-spacing: -0.3px; margin-bottom: 16px; }
+  .section-body { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
 
   /* ── IMAGE PLACEHOLDER ── */
   .img-placeholder {
@@ -91,9 +91,9 @@
   .hero-text {}
   .page-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
   .page-eyebrow::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); }
-  .page-title { font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 20px; }
+  .page-title { font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 18px; }
   .page-title span { color: var(--red); }
-  .page-lead { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; }
+  .page-lead { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 520px; }
   .hero-image { height: 420px; }
 
   /* ── INTRO SECTION ── */
@@ -120,8 +120,8 @@
   .value-icon { width: 48px; height: 48px; background: var(--off-white); display: flex; align-items: center; justify-content: center; transition: background 0.25s; }
   .value-card:hover .value-icon { background: rgba(192,57,43,0.1); }
   .value-icon svg { color: var(--red); }
-  .value-title { font-family: 'Playfair Display',serif; font-size: 19px; font-weight: 600; color: var(--black); }
-  .value-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+  .value-title { font-family: 'Playfair Display',serif; font-size: 17px; font-weight: 600; color: var(--black); }
+  .value-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; }
 
   /* ── ENGINEERS SECTION ── */
   .engineers-section { padding: 72px 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
@@ -267,8 +267,7 @@
 
 <nav>
   <div class="nav-logo">
-    <div class="logo-shield"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-    <div class="logo-text-wrap"><span class="logo-name">Ace Alarms</span><span class="logo-sub">&amp; Security Systems</span></div>
+    <img src="IMG_0416.png" alt="Ace Alarms & Security Systems" style="height:44px;width:auto;">
   </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
