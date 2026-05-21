@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Ace Alarms & Security Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #C0392B; --red-dark: #a93226;
+    --black: #111111; --white: #FFFFFF;
+    --off-white: #F5F4F0; --muted: #5a5a5a; --border: #DEDBD4;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: var(--black); background: var(--white); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── EMERGENCY BAR ── */
+  .emergency-bar { background: var(--red); color: var(--white); text-align: center; padding: 8px 1rem; font-size: 12px; font-weight: 500; }
+  .emergency-bar a { color: var(--white); font-weight: 700; }
+  .emergency-bar .sep { margin: 0 10px; opacity: 0.4; }
+  .hide-mobile { display: inline; }
+
+  /* ── NAV ── */
+  nav { background: var(--black); display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; height: 60px; position: sticky; top: 0; z-index: 200; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .logo-shield { width: 30px; height: 34px; background: var(--red); clip-path: polygon(0 0,100% 0,100% 72%,50% 100%,0 72%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .logo-shield svg { width: 15px; height: 15px; }
+  .logo-text-wrap { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name { font-family: 'Playfair Display', serif; color: var(--white); font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
+  .logo-sub { color: #888; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-top: 2px; }
+  .nav-links { display: flex; align-items: center; }
+  .nav-links a { color: #bbb; font-size: 13px; font-weight: 400; padding: 0 13px; height: 60px; display: flex; align-items: center; letter-spacing: 0.3px; transition: color 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); border-bottom-color: var(--red); }
+  .nav-cta { background: var(--red) !important; color: var(--white) !important; padding: 9px 18px !important; height: auto !important; font-weight: 600 !important; margin-left: 10px; border-bottom: none !important; }
+  .nav-cta:hover { background: var(--red-dark) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+  .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--black); border-top: 1px solid #222; z-index: 199; flex-direction: column; padding: 12px 0 20px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: #ccc; font-size: 15px; padding: 14px 24px; border-bottom: 1px solid #1a1a1a; transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--white); }
+  .mobile-menu .mobile-cta { margin: 12px 24px 0; background: var(--red); color: var(--white) !important; text-align: center; padding: 14px 24px !important; font-weight: 600 !important; border-bottom: none !important; }
+
+  /* ── FLOAT ── */
+  .float-contact { position: fixed; bottom: 20px; right: 16px; z-index: 300; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .float-btn { background: var(--red); color: var(--white); display: flex; align-items: center; gap: 8px; padding: 12px 18px; font-family: 'DM Sans',sans-serif; font-size: 13px; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(192,57,43,0.45); transition: all 0.2s; white-space: nowrap; }
+  .float-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+  .float-tel { background: var(--black); color: var(--white); display: flex; align-items: center; gap: 8px; padding: 10px 16px; font-family: 'DM Sans',sans-serif; font-size: 13px; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: all 0.2s; white-space: nowrap; }
+  .float-tel:hover { background: #222; transform: translateY(-2px); }
+
+  /* ── SHARED TYPOGRAPHY ── */
+  .section-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .section-eyebrow::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); flex-shrink: 0; }
+  .section-heading { font-size: clamp(24px, 2.5vw, 34px); font-weight: 700; line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 18px; }
+  .section-body { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+
+  /* ── IMAGE PLACEHOLDER ── */
+  .img-placeholder {
+    background: var(--off-white);
+    border: 2px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #aaa;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px;
+  }
+  .img-placeholder svg { opacity: 0.3; }
+  .img-placeholder .img-label { font-size: 11px; color: #bbb; font-weight: 400; text-transform: none; letter-spacing: 0; margin-top: 2px; font-style: italic; }
+
+  /* ── PAGE HERO ── */
+  .page-hero { background: var(--off-white); border-bottom: 3px solid var(--red); padding: 64px 2rem 56px; }
+  .page-hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 24px; flex-wrap: wrap; }
+  .breadcrumb a { color: var(--muted); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--red); }
+  .breadcrumb svg { opacity: 0.4; flex-shrink: 0; }
+  .breadcrumb .current { color: var(--red); font-weight: 500; }
+  .hero-text {}
+  .page-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .page-eyebrow::before { content: ''; display: block; width: 22px; height: 2px; background: var(--red); }
+  .page-title { font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 20px; }
+  .page-title span { color: var(--red); }
+  .page-lead { font-size: 16px; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; }
+  .hero-image { height: 420px; }
+
+  /* ── INTRO SECTION ── */
+  .intro-section { padding: 72px 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .intro-image { height: 460px; }
+
+  /* ── STAT ROW ── */
+  .stat-row { background: var(--black); padding: 48px 2rem; }
+  .stat-row-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: #222; border: 1px solid #222; }
+  .stat-item { background: var(--black); padding: 32px 28px; display: flex; flex-direction: column; gap: 6px; }
+  .stat-num { font-family: 'Playfair Display',serif; font-size: 40px; font-weight: 700; color: var(--white); line-height: 1; }
+  .stat-num span { color: var(--red); }
+  .stat-label { font-size: 12px; font-weight: 400; color: #666; letter-spacing: 0.3px; text-transform: uppercase; }
+  .stat-detail { font-size: 13px; font-weight: 300; color: #555; line-height: 1.6; margin-top: 4px; }
+
+  /* ── VALUES SECTION ── */
+  .values-section { padding: 72px 2rem; background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .values-inner { max-width: 1200px; margin: 0 auto; }
+  .values-header { text-align: center; margin-bottom: 52px; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .values-header .section-eyebrow { justify-content: center; }
+  .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .value-card { background: var(--white); padding: 36px 30px; display: flex; flex-direction: column; gap: 14px; border-top: 3px solid transparent; transition: border-color 0.25s; }
+  .value-card:hover { border-top-color: var(--red); }
+  .value-icon { width: 48px; height: 48px; background: var(--off-white); display: flex; align-items: center; justify-content: center; transition: background 0.25s; }
+  .value-card:hover .value-icon { background: rgba(192,57,43,0.1); }
+  .value-icon svg { color: var(--red); }
+  .value-title { font-family: 'Playfair Display',serif; font-size: 19px; font-weight: 600; color: var(--black); }
+  .value-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+
+  /* ── ENGINEERS SECTION ── */
+  .engineers-section { padding: 72px 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .engineers-images { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .engineers-images .img-placeholder:first-child { grid-column: 1 / -1; height: 240px; }
+  .engineers-images .img-placeholder { height: 180px; }
+  .honest-box { background: var(--off-white); border: 1px solid var(--border); border-left: 4px solid var(--red); padding: 24px 22px; margin-top: 28px; }
+  .honest-box-title { font-family: 'Playfair Display',serif; font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+  .honest-box-text { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+
+  /* ── JOBS GALLERY ── */
+  .gallery-section { background: var(--off-white); border-top: 1px solid var(--border); padding: 72px 2rem; }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; }
+  .gallery-header { margin-bottom: 40px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .gallery-item { position: relative; }
+  .gallery-item .img-placeholder { height: 220px; }
+  .gallery-item-wide { grid-column: span 2; }
+  .gallery-item-wide .img-placeholder { height: 280px; }
+  .gallery-caption { background: var(--white); border-top: 1px solid var(--border); padding: 12px 16px; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.3px; }
+
+  /* ── SSAIB SECTION ── */
+  .ssaib-section { padding: 72px 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; }
+  .ssaib-badges { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .ssaib-badge-row { background: var(--white); padding: 24px 22px; display: flex; align-items: flex-start; gap: 18px; }
+  .badge-icon { width: 48px; height: 48px; background: rgba(192,57,43,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .badge-icon svg { color: var(--red); }
+  .badge-code { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .badge-name { font-family: 'Playfair Display',serif; font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+  .badge-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* ── COVERAGE ── */
+  .coverage-section { background: var(--black); padding: 72px 2rem; }
+  .coverage-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .coverage-text .section-eyebrow { color: #666; }
+  .coverage-text .section-eyebrow::before { background: #444; }
+  .coverage-text .section-heading { color: var(--white); }
+  .coverage-text .section-body { color: #888; }
+  .coverage-map { height: 360px; background: #1a1a1a; border: 1px solid #2a2a2a; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .coverage-map svg { opacity: 0.2; }
+  .coverage-map-label { font-size: 12px; color: #444; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+  .coverage-map-sublabel { font-size: 11px; color: #333; font-style: italic; }
+  .coverage-area-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .coverage-tag { font-size: 12px; font-weight: 500; padding: 5px 12px; border: 1px solid #2a2a2a; color: #777; background: #1a1a1a; }
+
+  /* ── REVIEWS ── */
+  .reviews-section { padding: 72px 2rem; max-width: 1200px; margin: 0 auto; }
+  .reviews-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; flex-wrap: wrap; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .review-card { background: var(--white); padding: 28px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .review-stars { color: var(--red); font-size: 13px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: var(--black); line-height: 1.75; font-style: italic; font-weight: 300; flex: 1; }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .review-type { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--red); }
+
+  /* ── CTA ── */
+  .cta-band { background: var(--red); padding: 60px 2rem; text-align: center; }
+  .cta-band .section-eyebrow { color: rgba(255,255,255,0.6); justify-content: center; }
+  .cta-band .section-eyebrow::before { background: rgba(255,255,255,0.4); }
+  .cta-heading { font-family: 'Playfair Display',serif; font-size: clamp(26px,3vw,40px); font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -0.3px; }
+  .cta-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.8); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: var(--white); color: var(--red); padding: 14px 28px; font-family: 'DM Sans',sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: background 0.2s; }
+  .btn-white:hover { background: var(--off-white); }
+  .btn-outline-white { background: transparent; color: var(--white); padding: 14px 28px; font-family: 'DM Sans',sans-serif; font-size: 14px; font-weight: 500; border: 2px solid rgba(255,255,255,0.5); cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--black); color: #888; padding: 56px 2rem 28px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; max-width: 1200px; margin: 0 auto 44px; padding-bottom: 44px; border-bottom: 1px solid #1e1e1e; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-desc { font-size: 13px; font-weight: 300; line-height: 1.8; color: #666; max-width: 260px; }
+  .footer-heading { font-family: 'Playfair Display',serif; font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 16px; }
+  .footer-links { display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a { font-size: 13px; color: #666; font-weight: 300; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-contact-item { display: flex; gap: 9px; font-size: 13px; color: #666; font-weight: 300; align-items: flex-start; margin-bottom: 10px; }
+  .footer-contact-item svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #3a3a3a; flex-wrap: wrap; gap: 10px; }
+  .cert-badge { display: inline-block; background: #1a1a1a; border: 1px solid #2a2a2a; padding: 4px 9px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #666; margin-left: 6px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .page-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-image { height: 280px; }
+    .intro-section { grid-template-columns: 1fr; gap: 36px; }
+    .intro-image { height: 280px; order: -1; }
+    .stat-row-inner { grid-template-columns: 1fr 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .engineers-section { grid-template-columns: 1fr; gap: 36px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item-wide { grid-column: span 2; }
+    .ssaib-section { grid-template-columns: 1fr; gap: 36px; }
+    .coverage-inner { grid-template-columns: 1fr; gap: 36px; }
+    .coverage-map { height: 260px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+  @media (max-width: 600px) {
+    .emergency-bar .hide-mobile { display: none; }
+    nav { padding: 0 1rem; height: 56px; }
+    .mobile-menu { top: 56px; }
+    .float-tel { display: none; }
+    .page-hero { padding: 44px 1.25rem 36px; }
+    .hero-image { height: 220px; }
+    .intro-section { padding: 48px 1.25rem; }
+    .stat-row-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item { padding: 22px 16px; }
+    .stat-num { font-size: 32px; }
+    .values-section { padding: 48px 1.25rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .engineers-section { padding: 48px 1.25rem; }
+    .engineers-images { grid-template-columns: 1fr; }
+    .engineers-images .img-placeholder:first-child { grid-column: 1; }
+    .gallery-section { padding: 48px 1.25rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item-wide { grid-column: span 1; }
+    .ssaib-section { padding: 48px 1.25rem; }
+    .coverage-section { padding: 48px 1.25rem; }
+    .reviews-section { padding: 48px 1.25rem; }
+    .reviews-top { flex-direction: column; align-items: flex-start; }
+    .cta-band { padding: 48px 1.25rem; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .btn-white, .btn-outline-white { width: 100%; justify-content: center; max-width: 320px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; padding: 0 0 32px; }
+    footer { padding: 44px 1.25rem 24px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="emergency-bar">
+  24/7 Emergency <span class="sep">|</span>
+  <a href="tel:01444247960">01444 247960</a>
+  <span class="sep hide-mobile">|</span>
+  <span class="hide-mobile"><a href="mailto:info@ace-alarms.co.uk">info@ace-alarms.co.uk</a></span>
+  <span class="sep hide-mobile">|</span>
+  <span class="hide-mobile">Sussex &amp; Surrey</span>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-shield"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="logo-text-wrap"><span class="logo-name">Ace Alarms</span><span class="logo-sub">&amp; Security Systems</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="ace-alarms-residential.html">Residential</a>
+    <a href="ace-alarms-commercial.html">Commercial</a>
+    <a href="#" class="active">About</a>
+    <a href="#">Reviews</a>
+    <a href="#" class="nav-cta">Get a Quote</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="ace-alarms-residential.html">Residential</a>
+  <a href="ace-alarms-commercial.html">Commercial</a>
+  <a href="#">About</a>
+  <a href="#">Reviews</a>
+  <a href="#" class="mobile-cta">Get a Free Quote</a>
+</div>
+
+<div class="float-contact">
+  <a href="tel:01444247960" class="float-tel">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    01444 247960
+  </a>
+  <a href="#" class="float-btn">Free Survey <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-text">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="current">About Us</span>
+      </div>
+      <div class="page-eyebrow">Who We Are</div>
+      <h1 class="page-title">A security company<br>small enough to <span>care.</span></h1>
+      <p class="page-lead">Ace Alarms &amp; Security Systems is an independent, SSAIB-certified security company serving homes and businesses across Sussex and Surrey. We're not a franchise. We're not a national chain. We're a local company, and our reputation depends on every single job we do.</p>
+    </div>
+    <div class="img-placeholder hero-image">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Photo — team / van / company
+      <span class="img-label">Suggested: team photo, branded van, or office exterior</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="intro-image img-placeholder">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Photo — engineer at work
+    <span class="img-label">Suggested: engineer installing panel or wiring, on-site</span>
+  </div>
+  <div>
+    <div class="section-eyebrow">What We Stand For</div>
+    <h2 class="section-heading">Security done properly,<br>by people who take pride in it.</h2>
+    <p class="section-body">When you choose Ace Alarms, you're not calling a number and waiting to see who turns up. You're dealing with a small, experienced team that takes real ownership of every job — from the first site visit to the annual service call years later.</p>
+    <p class="section-body">We believe that good security work is built on honest advice, quality installation and being there when it matters. That means telling customers what they actually need — not the most expensive option. It means leaving a job tidy. And it means answering the phone at 2 in the morning when an alarm goes off.</p>
+    <p class="section-body">We work across Sussex and Surrey, installing and maintaining intruder alarms, fire alarms, CCTV and access control for homes and businesses of all sizes. Every system we design is specified to the relevant British Standards and backed by our SSAIB certification.</p>
+  </div>
+</section>
+
+<!-- STAT ROW -->
+<div class="stat-row">
+  <div class="stat-row-inner">
+    <div class="stat-item">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">Engineer Response</div>
+      <div class="stat-detail">Real engineers on call around the clock, every day of the year. Not a call centre — someone who knows your system.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">SS<span>AIB</span></div>
+      <div class="stat-label">Certified</div>
+      <div class="stat-detail">Independently audited and certified. Recognised by all major UK insurers for both domestic and commercial installations.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2<span>x</span></div>
+      <div class="stat-label">Sectors Covered</div>
+      <div class="stat-detail">Residential and commercial. From family homes to multi-site business portfolios across the region.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5<span>★</span></div>
+      <div class="stat-label">Customer Reviews</div>
+      <div class="stat-detail">Consistently five stars on Google and a 10/10 score on Checkatrade. Our reputation is everything to us.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="values-header">
+      <div class="section-eyebrow">Our Values</div>
+      <h2 class="section-heading">The things we won't compromise on.</h2>
+    </div>
+    <div class="values-grid">
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="value-title">Honest Advice</div>
+        <div class="value-desc">We'll tell you what your property actually needs — not the most profitable option. If a simpler system does the job, that's what we'll recommend. No upselling, no unnecessary add-ons.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="value-title">Quality Installation</div>
+        <div class="value-desc">Every system is installed to the relevant British Standard. We work tidily, test everything before we leave and don't cut corners — because a system that isn't right isn't doing its job.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="value-title">Always Available</div>
+        <div class="value-desc">Security problems don't keep office hours. Our 24/7 callout line is answered by engineers — real people who can actually help — not a third-party call handler reading from a script.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="value-title">Certified Standards</div>
+        <div class="value-desc">SSAIB certification isn't just a badge on our website. It means our work is independently audited, our engineers are vetted and our installations meet the standards your insurer expects.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="value-title">Familiar Faces</div>
+        <div class="value-desc">We're a small team, and we like it that way. You'll usually deal with the same people, and the engineer who services your system will know its history. That's not something a national chain can offer.</div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="value-title">Genuinely Local</div>
+        <div class="value-desc">We're based in Burgess Hill and work across Sussex and Surrey. We know the area, we understand the properties and we're close enough to respond quickly when you need us.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENGINEERS -->
+<section class="engineers-section">
+  <div class="engineers-images">
+    <div class="img-placeholder" style="grid-column:1/-1;height:240px;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Photo — team group shot
+      <span class="img-label">Suggested: team photo, outside or in uniform</span>
+    </div>
+    <div class="img-placeholder" style="height:180px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Photo — engineer close-up
+      <span class="img-label">Suggested: engineer working, hands-on</span>
+    </div>
+    <div class="img-placeholder" style="height:180px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Photo — branded vehicle
+      <span class="img-label">Suggested: van, ID card, or equipment</span>
+    </div>
+  </div>
+  <div>
+    <div class="section-eyebrow">Our Team</div>
+    <h2 class="section-heading">The people behind<br>every installation.</h2>
+    <p class="section-body">We're a small, tight-knit team of security engineers who between us cover everything from initial surveys to full system installations and ongoing maintenance. Because we're small, the people you deal with at enquiry are often the same people on your doorstep on installation day.</p>
+    <p class="section-body">Our engineers are vetted, trained and carry ID at all times — a requirement of our SSAIB certification. They take the same care and pride in every job, whether it's a single alarm bell box or a full multi-site commercial contract.</p>
+    <div class="honest-box">
+      <div class="honest-box-title">A note on our team</div>
+      <div class="honest-box-text">We always aim to send our own engineers — and in the vast majority of cases, that's exactly what happens. On rare occasions, particularly during busy periods, we may use a small number of trusted, vetted engineers who work to the same standards we hold ourselves to. We'll always be upfront about this, and it never affects the quality of work or the warranty we provide.</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOBS GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="gallery-header">
+      <div class="section-eyebrow">Our Work</div>
+      <h2 class="section-heading">Jobs we're proud of.</h2>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="gallery-item gallery-item-wide">
+        <div class="img-placeholder" style="height:280px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — completed installation
+          <span class="img-label">Suggested: finished alarm panel or CCTV system, nicely presented</span>
+        </div>
+        <div class="gallery-caption">Commercial intruder alarm installation — Office premises, Sussex</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="img-placeholder" style="height:220px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — CCTV install
+          <span class="img-label">Suggested: external CCTV camera, clean bracket on wall</span>
+        </div>
+        <div class="gallery-caption">CCTV system — Residential property, Surrey</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="img-placeholder" style="height:220px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — fire alarm panel
+          <span class="img-label">Suggested: addressable fire panel, tidy cabinet</span>
+        </div>
+        <div class="gallery-caption">Addressable fire alarm — Commercial unit, Burgess Hill</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="img-placeholder" style="height:220px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — access control
+          <span class="img-label">Suggested: Paxton reader on door, clean installation</span>
+        </div>
+        <div class="gallery-caption">Access control — Office building, West Sussex</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="img-placeholder" style="height:220px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — residential alarm
+          <span class="img-label">Suggested: keypad or panel in hallway, neat install</span>
+        </div>
+        <div class="gallery-caption">Wireless intruder alarm — Family home, Haywards Heath</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="img-placeholder" style="height:220px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Photo — engineer on site
+          <span class="img-label">Suggested: engineer mid-install, professional, tidy workspace</span>
+        </div>
+        <div class="gallery-caption">Annual maintenance visit — Commercial client, Surrey</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SSAIB / STANDARDS -->
+<section class="ssaib-section">
+  <div>
+    <div class="section-eyebrow">Certification &amp; Standards</div>
+    <h2 class="section-heading">What our SSAIB certification<br>means for you.</h2>
+    <p class="section-body">The SSAIB — Security Systems and Alarms Inspection Board — is the leading independent certification body for security and fire system installers in the UK. Being SSAIB certified isn't something you can self-declare. It requires an independent audit of our work, our engineers and our business practices, carried out on a regular basis.</p>
+    <p class="section-body">For you as a customer, it means two practical things. First, your insurer will recognise our installation — most home and business insurers require or prefer an SSAIB certified installer for any alarm or fire system to count towards your cover. Second, it gives you independent recourse if anything ever falls short — the SSAIB holds us accountable, not just our own word.</p>
+    <p class="section-body">All our installations reference the relevant British Standards — BS EN 50131 for intruder alarms and BS 5839-1 for fire detection systems. Compliance certificates are issued on completion of every installation.</p>
+  </div>
+  <div class="ssaib-badges">
+    <div class="ssaib-badge-row">
+      <div class="badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <div class="badge-code">SSAIB</div>
+        <div class="badge-name">SSAIB Certified Installer</div>
+        <div class="badge-desc">Independently audited and certified by the Security Systems and Alarms Inspection Board. Recognised by all major UK insurers.</div>
+      </div>
+    </div>
+    <div class="ssaib-badge-row">
+      <div class="badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+      <div>
+        <div class="badge-code">BS EN 50131</div>
+        <div class="badge-name">Intruder &amp; Hold-Up Alarm Systems</div>
+        <div class="badge-desc">The European standard for graded intruder alarm design and installation. All our intruder systems are specified and installed to this standard.</div>
+      </div>
+    </div>
+    <div class="ssaib-badge-row">
+      <div class="badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div>
+        <div class="badge-code">BS 5839-1</div>
+        <div class="badge-name">Fire Detection &amp; Alarm Systems</div>
+        <div class="badge-desc">The benchmark standard for commercial fire alarm design and installation. Required by most commercial insurers and building regulations.</div>
+      </div>
+    </div>
+    <div class="ssaib-badge-row">
+      <div class="badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div>
+        <div class="badge-code">Compliance Docs</div>
+        <div class="badge-name">Certificates on Completion</div>
+        <div class="badge-desc">Every installation comes with full compliance documentation and certificates, issued on handover day — ready for your insurer or building manager.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section class="coverage-section">
+  <div class="coverage-inner">
+    <div class="coverage-text">
+      <div class="section-eyebrow">Where We Work</div>
+      <h2 class="section-heading">Based in Burgess Hill.<br>Covering Sussex &amp; Surrey.</h2>
+      <p class="section-body">We're a local company in the truest sense — based in Burgess Hill, we work across West Sussex, East Sussex and Surrey. Being genuinely local means faster response times, a proper understanding of the area and properties we work in, and a team that's part of the same community as our customers.</p>
+      <p class="section-body">If you're not sure whether we cover your area, just give us a call. We're happy to confirm before you commit to anything.</p>
+      <div class="coverage-area-tags">
+        <span class="coverage-tag">West Sussex</span>
+        <span class="coverage-tag">East Sussex</span>
+        <span class="coverage-tag">Surrey</span>
+        <span class="coverage-tag">Burgess Hill</span>
+        <span class="coverage-tag">Brighton &amp; Hove</span>
+        <span class="coverage-tag">Haywards Heath</span>
+        <span class="coverage-tag">Horsham</span>
+        <span class="coverage-tag">Crawley</span>
+        <span class="coverage-tag">East Grinstead</span>
+        <span class="coverage-tag">Guildford</span>
+        <span class="coverage-tag">Redhill</span>
+        <span class="coverage-tag">&amp; surrounding areas</span>
+      </div>
+    </div>
+    <div class="coverage-map">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="coverage-map-label">Coverage Map</div>
+      <div class="coverage-map-sublabel">Replace with an actual map image or embed</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="reviews-top">
+    <div>
+      <div class="section-eyebrow">What Our Customers Say</div>
+      <h2 class="section-heading">Don't take our word for it.</h2>
+    </div>
+    <a href="#" style="font-size:13px;font-weight:500;color:var(--red);display:flex;align-items:center;gap:4px;white-space:nowrap;align-self:flex-end;">All reviews <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Absolutely brilliant from start to finish. The engineer was professional, tidy and took the time to explain everything. Would not hesitate to recommend Ace Alarms to anyone."</div>
+      <div><div class="review-author">S. Hartley</div><div class="review-type">Residential · Burgess Hill · Google</div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"We've used Ace Alarms across three of our sites. Reliable, responsive and they actually answer the phone when you call — which matters more than you'd think with a security company."</div>
+      <div><div class="review-author">M. Connolly</div><div class="review-type">Commercial · Multi-Site · Google</div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Prompt response, engineer on site within two hours of calling. Sorted the fault, tested everything and updated all the paperwork. Exactly what you want from a company you trust with your security."</div>
+      <div><div class="review-author">T. Brennan</div><div class="review-type">Commercial · Checkatrade</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="section-eyebrow">Get in Touch</div>
+  <h2 class="cta-heading">Ready to talk about your security?</h2>
+  <p class="cta-sub">Whether it's a home alarm or a multi-site commercial contract, we start with a free, no-obligation conversation. No pressure, no jargon — just honest advice.</p>
+  <div class="cta-buttons">
+    <button class="btn-white">Request a Free Survey</button>
+    <a href="tel:01444247960" class="btn-outline-white">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      01444 247960
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="logo-shield" style="width:28px;height:32px;"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="width:13px;height:13px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="logo-text-wrap"><span class="logo-name" style="font-size:15px;">Ace Alarms</span><span class="logo-sub">&amp; Security Systems</span></div>
+      </div>
+      <p class="footer-desc">SSAIB-certified security specialists serving homes and businesses across Sussex and Surrey.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <div class="footer-links">
+        <a href="#">Intruder Alarms</a><a href="#">Fire Alarms</a><a href="#">CCTV Systems</a><a href="#">Access Control</a><a href="#">Maintenance</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="ace-alarms-residential.html">Residential</a>
+        <a href="ace-alarms-commercial.html">Commercial</a>
+        <a href="#">About Us</a>
+        <a href="#">Reviews</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>01444 247960</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@ace-alarms.co.uk</div>
+      <div class="footer-contact-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Burgess Hill, West Sussex</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2026 Ace Alarms &amp; Security Systems. All rights reserved.</div>
+    <div><span class="cert-badge">SSAIB</span><span class="cert-badge">BS 5839-1</span><span class="cert-badge">BS EN 50131</span></div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }));
+</script>
+</body>
+</html>
