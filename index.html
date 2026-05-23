@@ -255,15 +255,21 @@
   .split-panel > * { position: relative; z-index: 1; }
 
   .split-panel-residential {
-    background: var(--off-white);
-    border-right: 1px solid var(--border);
+    background: linear-gradient(rgba(17,17,17,0.52), rgba(17,17,17,0.52)), url('van-at-detached-home.jpg');
+    background-size: cover;
+    background-position: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
   }
   .split-panel-residential::before {
-    background: linear-gradient(135deg, #f0ece4, #e8e4dc);
+    background: rgba(17,17,17,0.15);
   }
-  .split-panel-commercial { background: var(--black); }
+  .split-panel-commercial {
+    background: linear-gradient(rgba(17,17,17,0.60), rgba(17,17,17,0.60)), url('van-at-eao-offices.jpg');
+    background-size: cover;
+    background-position: center;
+  }
   .split-panel-commercial::before {
-    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    background: rgba(17,17,17,0.15);
   }
 
   .panel-eyebrow {
@@ -294,7 +300,7 @@
     margin-bottom: 18px;
     letter-spacing: -0.5px;
   }
-  .split-panel-residential .panel-heading { color: var(--black); }
+  .split-panel-residential .panel-heading { color: var(--white); }
   .split-panel-commercial .panel-heading { color: var(--white); }
   .panel-heading span { color: var(--red); }
 
@@ -305,8 +311,8 @@
     max-width: 360px;
     font-weight: 300;
   }
-  .split-panel-residential .panel-desc { color: var(--muted); }
-  .split-panel-commercial .panel-desc { color: #999; }
+  .split-panel-residential .panel-desc { color: rgba(255,255,255,0.78); }
+  .split-panel-commercial .panel-desc { color: rgba(255,255,255,0.78); }
 
   .panel-services {
     display: flex;
@@ -545,6 +551,18 @@
     align-items: center;
     gap: 4px;
     margin-top: 4px;
+  }
+
+  /* ── PHOTO STRIP ── */
+  .photo-strip { overflow: hidden; background: var(--black); border-top: 3px solid var(--red); }
+  .photo-strip-track { display: flex; gap: 5px; animation: strip-scroll 55s linear infinite; width: max-content; }
+  .photo-strip-track:hover { animation-play-state: paused; }
+  .photo-strip-item { flex-shrink: 0; height: 300px; overflow: hidden; }
+  .photo-strip-item img { height: 100%; width: auto; display: block; object-fit: cover; opacity: 0.85; transition: opacity 0.4s; }
+  .photo-strip-item:hover img { opacity: 1; }
+  @keyframes strip-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   /* ── PROCESS ── */
@@ -946,6 +964,9 @@
     .stat-box { padding: 22px 16px; }
     .stat-num { font-size: 30px; }
 
+    /* Photo strip — smaller on mobile */
+    .photo-strip-item { height: 200px; }
+
     /* Services 1 col */
     .services-section { padding: 44px 1.25rem; }
     .services-grid { grid-template-columns: 1fr; }
@@ -981,7 +1002,28 @@
 </head>
 <body>
 
-<!-- Emergency Bar -->
+<!--
+  ═══════════════════════════════════════════════════
+  ACE ALARMS — HOME PAGE (index.html)
+  ═══════════════════════════════════════════════════
+  1. EMERGENCY BAR   red top strip with phone number
+  2. NAV             sticky black navigation bar
+  3. MOBILE MENU     full-screen menu on small screens
+  4. FLOAT CONTACT   fixed bottom-right call buttons
+  5. HERO            split panel: residential / commercial
+  6. TRUST BAR       credentials strip (SSAIB, standards)
+  7. ABOUT SNIPPET   brief intro + key stats
+  8. SERVICES        grid of 6 service cards
+  9. PHOTO STRIP     auto-scrolling gallery of job photos
+ 10. PROCESS         how it works (5 steps)
+ 11. MANUFACTURERS   trusted brands we install
+ 12. REVIEWS         customer testimonials
+ 13. CTA BAND        call to action
+ 14. FOOTER          links, contact, legal
+  ═══════════════════════════════════════════════════
+-->
+
+<!-- EMERGENCY BAR -->
 <div class="emergency-bar">
   24/7 Emergency &nbsp;<span class="sep">|</span>&nbsp;
   <a href="tel:01444247960">01444 247960</a>
@@ -991,10 +1033,10 @@
   <span class="hide-mobile">Sussex &amp; Surrey</span>
 </div>
 
-<!-- Nav -->
+<!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="IMG_0416.png" alt="Ace Alarms & Security Systems" style="height:44px;width:auto;">
+    <img src="logo.png" alt="Ace Alarms & Security Systems" style="height:44px;width:auto;">
   </div>
 
   <!-- Desktop links -->
@@ -1013,7 +1055,7 @@
   </button>
 </nav>
 
-<!-- Mobile Menu -->
+<!-- MOBILE MENU — shown when hamburger is tapped -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Home</a>
   <a href="ace-alarms-residential.html">Residential</a>
@@ -1023,7 +1065,7 @@
   <a href="#" class="mobile-cta">Get a Free Quote</a>
 </div>
 
-<!-- Floating Contact -->
+<!-- FLOAT CONTACT — fixed buttons bottom-right of screen -->
 <div class="float-contact">
   <a href="tel:01444247960" class="float-tel">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1035,7 +1077,7 @@
   </a>
 </div>
 
-<!-- SPLIT HERO -->
+<!-- HERO — split panel, residential left / commercial right. Background images are van-at-detached-home.jpg and van-at-eao-offices.jpg -->
 <section class="split-hero">
   <div class="split-panel split-panel-residential">
     <div class="panel-eyebrow">For Homeowners</div>
@@ -1060,7 +1102,7 @@
   </div>
 </section>
 
-<!-- Trust Bar -->
+<!-- TRUST BAR — credentials strip below hero (SSAIB, standards, response time) -->
 <div class="trust-bar">
   <div class="trust-item">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1084,7 +1126,7 @@
   </div>
 </div>
 
-<!-- About -->
+<!-- ABOUT SNIPPET — brief intro paragraph + stats grid -->
 <div class="about-wrap">
   <div class="about-strip">
     <div>
@@ -1102,7 +1144,7 @@
   </div>
 </div>
 
-<!-- Services -->
+<!-- SERVICES — 6 service cards (intruder, fire, CCTV, access, maintenance, monitoring) -->
 <div class="services-section">
   <div class="services-header">
     <div>
@@ -1161,7 +1203,38 @@
   </div>
 </div>
 
-<!-- Process -->
+<!-- Photo Strip — auto-scrolling gallery of all job photos, duplicated for seamless loop -->
+<section class="photo-strip">
+  <div class="photo-strip-track">
+    <div class="photo-strip-item"><img src="commercial-unit-exterior.jpg" alt="Commercial unit secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="alarm-panel-keypad.jpg" alt="Alarm panel and keypad installation"></div>
+    <div class="photo-strip-item"><img src="van-at-eao-offices.jpg" alt="Ace Alarms van at commercial site"></div>
+    <div class="photo-strip-item"><img src="fire-alarm-panel.jpg" alt="Fire alarm panel installation"></div>
+    <div class="photo-strip-item"><img src="van-at-detached-home.jpg" alt="Ace Alarms van at residential property"></div>
+    <div class="photo-strip-item"><img src="woolovers-factory.jpg" alt="WoolOvers factory secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="van-at-office-block.jpg" alt="Ace Alarms van at office block"></div>
+    <div class="photo-strip-item"><img src="period-manor-house.jpg" alt="Period manor house secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="safari-restaurant.jpg" alt="Restaurant premises secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="grand-dome-house.jpg" alt="Grand residential property secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="semi-detached-house.jpg" alt="Semi-detached home secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="village-church.jpg" alt="Village church secured by Ace Alarms"></div>
+    <!-- Second set — identical copy so the animation loops without a jump -->
+    <div class="photo-strip-item"><img src="commercial-unit-exterior.jpg" alt="Commercial unit secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="alarm-panel-keypad.jpg" alt="Alarm panel and keypad installation"></div>
+    <div class="photo-strip-item"><img src="van-at-eao-offices.jpg" alt="Ace Alarms van at commercial site"></div>
+    <div class="photo-strip-item"><img src="fire-alarm-panel.jpg" alt="Fire alarm panel installation"></div>
+    <div class="photo-strip-item"><img src="van-at-detached-home.jpg" alt="Ace Alarms van at residential property"></div>
+    <div class="photo-strip-item"><img src="woolovers-factory.jpg" alt="WoolOvers factory secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="van-at-office-block.jpg" alt="Ace Alarms van at office block"></div>
+    <div class="photo-strip-item"><img src="period-manor-house.jpg" alt="Period manor house secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="safari-restaurant.jpg" alt="Restaurant premises secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="grand-dome-house.jpg" alt="Grand residential property secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="semi-detached-house.jpg" alt="Semi-detached home secured by Ace Alarms"></div>
+    <div class="photo-strip-item"><img src="village-church.jpg" alt="Village church secured by Ace Alarms"></div>
+  </div>
+</section>
+
+<!-- PROCESS — how it works, 5-step sequence on dark background -->
 <section class="process-section">
   <div class="process-inner">
     <div class="process-header">
@@ -1214,7 +1287,7 @@
   </div>
 </section>
 
-<!-- Manufacturers -->
+<!-- MANUFACTURERS — trusted brands we install (Pyronix, Texecom, HKC etc) -->
 <section class="manufacturers-section">
   <div class="manufacturers-inner">
     <div class="manufacturers-label">Approved installers for leading manufacturers</div>
@@ -1229,7 +1302,7 @@
   </div>
 </section>
 
-<!-- Reviews -->
+<!-- REVIEWS — customer testimonial cards -->
 <section class="reviews-section">
   <div class="reviews-top">
     <div>
@@ -1267,7 +1340,7 @@
   </div>
 </section>
 
-<!-- CTA Band -->
+<!-- CTA BAND — red call-to-action strip -->
 <section class="cta-band">
   <div class="section-eyebrow">Get Started</div>
   <h2 class="cta-heading">Ready to protect your property?</h2>
@@ -1281,7 +1354,7 @@
   </div>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
