@@ -257,20 +257,16 @@
   .split-panel-residential {
     background: linear-gradient(rgba(17,17,17,0.52), rgba(17,17,17,0.52)), url('van-at-detached-home.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center 72%;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
-  .split-panel-residential::before {
-    background: rgba(17,17,17,0.15);
-  }
+  .split-panel-residential::before { background: rgba(17,17,17,0.15); }
   .split-panel-commercial {
-    background: linear-gradient(rgba(17,17,17,0.60), rgba(17,17,17,0.60)), url('van-at-eao-offices.jpg');
+    background: linear-gradient(rgba(17,17,17,0.55), rgba(17,17,17,0.55)), url('van-at-eao-offices.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center 55%;
   }
-  .split-panel-commercial::before {
-    background: rgba(17,17,17,0.15);
-  }
+  .split-panel-commercial::before { background: rgba(17,17,17,0.15); }
 
   .panel-eyebrow {
     font-size: 11px;
@@ -644,8 +640,19 @@
     color: var(--muted);
     font-weight: 500;
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
+  .mfr-tier-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1px;
+    padding: 0 2px;
+    opacity: 0.7;
+  }
+  .mfr-secondary { margin-top: 3px; }
   .manufacturers-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -655,26 +662,51 @@
   }
   .manufacturer-box {
     background: var(--white);
-    padding: 20px 14px;
+    padding: 22px 14px 18px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     transition: background 0.2s;
+    min-height: 88px;
   }
   .manufacturer-box:hover { background: var(--off-white); }
+  .manufacturer-logo {
+    height: 28px;
+    width: auto;
+    max-width: 88px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.3);
+    opacity: 1;
+    transition: all 0.3s;
+    display: block;
+  }
+  .manufacturer-box:hover .manufacturer-logo { filter: grayscale(0%) brightness(1); opacity: 1; }
   .manufacturer-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
-    color: var(--black);
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    line-height: 1.3;
   }
-  .manufacturer-cat {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 1px;
+  .manufacturer-name-only {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .manufacturer-box:hover .manufacturer-name-only { opacity: 0.8; }
+  .manufacturer-sub {
+    font-size: 9px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--muted);
+    font-weight: 500;
+    opacity: 0.6;
   }
 
   /* ── REVIEWS ── */
@@ -867,12 +899,10 @@
   .split-panel-residential .panel-eyebrow { animation: fadeInUp 0.5s ease 0.1s both; }
   .split-panel-residential .panel-heading { animation: fadeInUp 0.5s ease 0.2s both; }
   .split-panel-residential .panel-desc    { animation: fadeInUp 0.5s ease 0.3s both; }
-  .split-panel-residential .panel-services{ animation: fadeInUp 0.5s ease 0.35s both; }
   .split-panel-residential .panel-btn     { animation: fadeInUp 0.5s ease 0.4s both; }
   .split-panel-commercial .panel-eyebrow  { animation: fadeInUp 0.5s ease 0.2s both; }
   .split-panel-commercial .panel-heading  { animation: fadeInUp 0.5s ease 0.3s both; }
   .split-panel-commercial .panel-desc     { animation: fadeInUp 0.5s ease 0.4s both; }
-  .split-panel-commercial .panel-services { animation: fadeInUp 0.5s ease 0.45s both; }
   .split-panel-commercial .panel-btn      { animation: fadeInUp 0.5s ease 0.5s both; }
 
   /* ══════════════════════════════════════
@@ -1077,12 +1107,13 @@
   </a>
 </div>
 
-<!-- HERO — split panel, residential left / commercial right. Background images are van-at-detached-home.jpg and van-at-eao-offices.jpg -->
+<!-- HERO — split panel, residential left / commercial right. Each panel is a mosaic of job photos showing what we do. -->
 <section class="split-hero">
+
   <div class="split-panel split-panel-residential">
     <div class="panel-eyebrow">For Residential</div>
     <h1 class="panel-heading">Protecting your<br><span>home</span> &amp; family.</h1>
-    <p class="panel-desc">Wired and wireless alarm systems, CCTV and access control for homes across Sussex and Surrey. Installed by our own engineers.</p>
+    <p class="panel-desc">Wired and wireless alarm systems, CCTV and access control for homes across Sussex and Surrey.</p>
     <a href="ace-alarms-residential.html" class="panel-btn">
       Residential Services
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1100,6 +1131,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
+
 </section>
 
 <!-- TRUST BAR — credentials strip below hero (SSAIB, standards, response time) -->
@@ -1109,11 +1141,11 @@
     SSAIB Certified
   </div>
   <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg>
     BS 5839-1 Fire
   </div>
   <div class="trust-item">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
     BS EN 50131 Intruder
   </div>
   <div class="trust-item">
@@ -1123,6 +1155,10 @@
   <div class="trust-item">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
     Local Engineers
+  </div>
+  <div class="trust-item">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+    BS7858 Screened
   </div>
 </div>
 
@@ -1155,16 +1191,16 @@
   </div>
   <div class="services-grid">
 
-    <div class="service-card featured">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
       <div class="service-tag">BS EN 50131</div>
       <div class="service-title">Intruder Alarm Systems</div>
       <div class="service-desc">Insurance-approved intruder alarms for homes and businesses. Wired, wireless and hybrid systems from Pyronix, Texecom and HKC.</div>
       <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card featured">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <div class="service-tag">BS 5839-1</div>
       <div class="service-title">Fire Alarm Systems</div>
       <div class="service-desc">Conventional and addressable fire systems designed and maintained to BS 5839-1. Compliance certificates issued on completion.</div>
@@ -1186,14 +1222,14 @@
     </div>
 
     <div class="service-card">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
       <div class="service-title">Maintenance Contracts</div>
       <div class="service-desc">Annual service plans for all system types. Priority callout, compliance documentation and a dedicated contact who knows your setup.</div>
       <a href="#" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
     <div class="service-card">
-      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
       <div class="service-tag">24/7</div>
       <div class="service-title">24/7 Emergency Response</div>
       <div class="service-desc">Real engineers, not a call centre. Our team is available around the clock, 365 days a year — for callouts and faults alike.</div>
@@ -1271,7 +1307,7 @@
         <div class="step-num">4</div>
         <div class="step-content">
           <div class="step-title">Installation</div>
-          <div class="step-desc">Our own engineers carry out the full installation. Tidy, efficient and fully tested before we leave.</div>
+          <div class="step-desc">Full installation — tidy, efficient and fully tested before we leave.</div>
         </div>
       </div>
 
@@ -1287,18 +1323,67 @@
   </div>
 </section>
 
-<!-- MANUFACTURERS — trusted brands we install (Pyronix, Texecom, HKC etc) -->
+<!-- MANUFACTURERS — brands we install (primary row) and service/maintain (secondary row) -->
 <section class="manufacturers-section">
   <div class="manufacturers-inner">
-    <div class="manufacturers-label">Approved installers for leading manufacturers</div>
+    <div class="manufacturers-label">Systems we install &amp; service</div>
+
+    <div class="mfr-tier-label">New installations</div>
     <div class="manufacturers-grid">
-      <div class="manufacturer-box"><div class="manufacturer-name">Pyronix</div><div class="manufacturer-cat">Intruder Alarms</div></div>
-      <div class="manufacturer-box"><div class="manufacturer-name">Texecom</div><div class="manufacturer-cat">Intruder Alarms</div></div>
-      <div class="manufacturer-box"><div class="manufacturer-name">HKC</div><div class="manufacturer-cat">Intruder Alarms</div></div>
-      <div class="manufacturer-box"><div class="manufacturer-name">Paxton</div><div class="manufacturer-cat">Access Control</div></div>
-      <div class="manufacturer-box"><div class="manufacturer-name">Hikvision</div><div class="manufacturer-cat">CCTV</div></div>
-      <div class="manufacturer-box"><div class="manufacturer-name">Advanced</div><div class="manufacturer-cat">Fire Alarms</div></div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://static.wixstatic.com/media/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png/v1/fill/w_157,h_51,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png" alt="Pyronix" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Pyronix</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://www.texe.com/images/logo.png" alt="Texecom" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Texecom</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://th.bing.com/th/id/ODF.xHCMqjWSV-XNBHPUJZVd6w?w=32&h=32&o=6&pid=AdsPlus" alt="HKC" onerror="this.style.display='none'">
+        <div class="manufacturer-name">HKC</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://www.paxton-access.com/wp-content/uploads/2018/12/paxton-logo.svg" alt="Paxton" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Paxton</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://www.dahuasecurity.com/logo.png" alt="Dahua" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Dahua</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://c-tec.com/wp-content/uploads/2025/10/C-TEC_Header_Logo.png" alt="C-TEC" onerror="this.style.display='none'">
+        <div class="manufacturer-name">C-TEC</div>
+      </div>
     </div>
+
+    <div class="mfr-tier-label mfr-secondary">Also service &amp; maintain</div>
+    <div class="manufacturers-grid">
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Honeywell_logo.svg" alt="Honeywell" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Honeywell</div>
+      </div>
+      <div class="manufacturer-box">
+        <div class="manufacturer-name-only">Scantronic</div>
+        <div class="manufacturer-sub">Eaton Group</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Eaton_Corporation_logo.svg" alt="Eaton" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Eaton</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://www.visonic.com/-/media/project/jci-global/security/visonic/visonic-logo/visonic-logo-v5.png?la=en&h=41&w=125&hash=E3ED508544670F74849D98B445EDE768" alt="Visonic" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Visonic</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" alt="Bosch" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Bosch</div>
+      </div>
+      <div class="manufacturer-box">
+        <img class="manufacturer-logo" src="https://www.fike.com/static/images/fike-logo.0d795bd575bf.svg" alt="Fike" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Fike</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
