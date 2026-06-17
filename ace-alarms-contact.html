@@ -165,6 +165,10 @@
   .footer-links a:hover { color: var(--white); }
   .footer-contact-item { display: flex; gap: 9px; font-size: 13px; color: #666; font-weight: 300; align-items: flex-start; margin-bottom: 10px; }
   .footer-contact-item svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+  .footer-contact-item a { color: #666; text-decoration: none; transition: color 0.2s; }
+  .footer-contact-item a:hover { color: var(--white); }
+  .info-email-link { color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .info-email-link:hover { color: var(--red); }
   .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #3a3a3a; flex-wrap: wrap; gap: 10px; }
   .footer-cert-badge { display: inline-block; background: #1a1a1a; border: 1px solid #2a2a2a; padding: 4px 9px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #666; margin-left: 6px; }
 
@@ -233,7 +237,7 @@
     <a href="ace-alarms-reviews.html">Reviews</a>
     <a href="ace-alarms-contact.html" class="nav-cta active">Contact Us</a>
   </div>
-  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE MENU — shown when hamburger is tapped -->
@@ -296,7 +300,7 @@
       <h2 class="form-title">Send us an enquiry</h2>
       <p class="form-sub">Fill in your details and one of our team will call you back the same working day. For urgent matters, please call us directly on 01444 247960.</p>
 
-      <form action="#" method="POST">
+      <form id="enquiry-form" action="#" method="POST">
 
         <div class="form-row-half">
           <div>
@@ -368,6 +372,11 @@
         <p class="form-note">We'll never share your details with third parties. By submitting this form you agree to us contacting you about your enquiry.</p>
 
       </form>
+      <div id="form-success" style="display:none;padding:40px 0;text-align:center;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" style="margin-bottom:16px;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:10px;">Enquiry received</h3>
+        <p style="font-size:14px;color:var(--muted);font-weight:300;max-width:360px;margin:0 auto;line-height:1.7;">Thank you — one of our team will call you back the same working day. For urgent matters, call us on <a href="tel:01444247960" style="color:var(--red);">01444 247960</a>.</p>
+      </div>
     </div>
 
     <!-- RIGHT: Contact info panel -->
@@ -383,7 +392,7 @@
         <div class="info-label">Email &amp; Address</div>
         <div class="info-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:info@ace-alarms.co.uk" style="color:var(--black);transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">info@ace-alarms.co.uk</a>
+          <a href="mailto:info@ace-alarms.co.uk" class="info-email-link">info@ace-alarms.co.uk</a>
         </div>
         <div class="info-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -498,11 +507,11 @@
       <div class="footer-heading">Contact</div>
       <div class="footer-contact-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        01444 247960
+        <a href="tel:01444247960">01444 247960</a>
       </div>
       <div class="footer-contact-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        info@ace-alarms.co.uk
+        <a href="mailto:info@ace-alarms.co.uk">info@ace-alarms.co.uk</a>
       </div>
       <div class="footer-contact-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -533,6 +542,14 @@
       mobileMenu.classList.remove('open');
     });
   });
+  const enquiryForm = document.getElementById('enquiry-form');
+  if (enquiryForm) {
+    enquiryForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      enquiryForm.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    });
+  }
 </script>
 
 </body>
