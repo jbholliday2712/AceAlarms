@@ -66,6 +66,17 @@
     gap: 10px;
     flex-shrink: 0;
   }
+  /* The logo image relies on mix-blend-mode:screen against a solid
+     black backdrop to look clean — give it its own permanent black
+     chip so it doesn't break when the nav itself goes translucent. */
+  .nav-logo a {
+    display: flex;
+    align-items: center;
+    background: var(--black);
+    padding: 6px 10px;
+    border-radius: 6px;
+    isolation: isolate;
+  }
 
   .logo-shield {
     width: 30px;
@@ -243,7 +254,6 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: background 0.4s;
   }
   .split-panel::before {
     content: '';
@@ -1029,6 +1039,7 @@
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 </style>
+<link rel="stylesheet" href="assets/enhance.css">
 </head>
 <body>
 
@@ -1165,13 +1176,13 @@
 <!-- ABOUT SNIPPET — brief intro paragraph + stats grid -->
 <div class="about-wrap">
   <div class="about-strip">
-    <div>
+    <div data-reveal>
       <div class="section-eyebrow">Who We Are</div>
       <h2 class="section-heading">Independent specialists.<br>Trusted across Sussex &amp; Surrey.</h2>
       <p class="section-body">Ace Alarms &amp; Security Systems Ltd is an independent, insurance-approved security company serving homes and businesses across Sussex and Surrey.</p>
       <p class="section-body">Whether it's a home burglar alarm or a full commercial security system, we deliver a professional installation backed by ongoing support and 24/7 engineer response.</p>
     </div>
-    <div class="stat-grid">
+    <div class="stat-grid" data-reveal>
       <div class="stat-box"><div class="stat-num">24<span>/7</span></div><div class="stat-label">Engineer Response</div></div>
       <div class="stat-box"><div class="stat-num">100<span>%</span></div><div class="stat-label">Satisfaction Focus</div></div>
       <div class="stat-box"><div class="stat-num">SS<span>AIB</span></div><div class="stat-label">Certified Works</div></div>
@@ -1182,7 +1193,7 @@
 
 <!-- SERVICES — 6 service cards (intruder, fire, CCTV, access, maintenance, monitoring) -->
 <div class="services-section">
-  <div class="services-header">
+  <div class="services-header" data-reveal>
     <div>
       <div class="section-eyebrow">What We Do</div>
       <h2 class="section-heading">Our services</h2>
@@ -1191,7 +1202,7 @@
   </div>
   <div class="services-grid">
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
       <div class="service-tag">BS EN 50131</div>
       <div class="service-title">Intruder Alarm Systems</div>
@@ -1199,7 +1210,7 @@
       <a href="residential-intruder-alarms.html" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <div class="service-tag">BS 5839-1</div>
       <div class="service-title">Fire Alarm Systems</div>
@@ -1207,28 +1218,28 @@
       <a href="commercial-fire-alarms.html" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
       <div class="service-title">CCTV Systems</div>
       <div class="service-desc">HD and IP camera systems with remote viewing. From single cameras to full multi-site surveillance networks.</div>
       <a href="residential-cctv.html" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
       <div class="service-title">Access Control</div>
       <div class="service-desc">Keypad, fob and smart card access from Paxton. Door entry and multi-door solutions for offices and commercial buildings.</div>
       <a href="residential-access-control.html" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
       <div class="service-title">Maintenance Contracts</div>
       <div class="service-desc">Annual service plans for all system types. Priority callout, compliance documentation and a dedicated contact who knows your setup.</div>
       <a href="residential-maintenance.html" class="service-link">Learn more <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
 
-    <div class="service-card">
+    <div class="service-card" data-reveal>
       <div class="service-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
       <div class="service-tag">24/7</div>
       <div class="service-title">24/7 Emergency Response</div>
@@ -1273,13 +1284,13 @@
 <!-- PROCESS — how it works, 5-step sequence on dark background -->
 <section class="process-section">
   <div class="process-inner">
-    <div class="process-header">
+    <div class="process-header" data-reveal>
       <div class="section-eyebrow">How It Works</div>
       <h2 class="section-heading">From enquiry to installation —<br>here's what to expect.</h2>
     </div>
     <div class="process-steps">
 
-      <div class="process-step">
+      <div class="process-step" data-reveal>
         <div class="step-num">1</div>
         <div class="step-content">
           <div class="step-title">Get in Touch</div>
@@ -1287,7 +1298,7 @@
         </div>
       </div>
 
-      <div class="process-step">
+      <div class="process-step" data-reveal>
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-title">Site Survey</div>
@@ -1295,7 +1306,7 @@
         </div>
       </div>
 
-      <div class="process-step">
+      <div class="process-step" data-reveal>
         <div class="step-num">3</div>
         <div class="step-content">
           <div class="step-title">Your Quote</div>
@@ -1303,7 +1314,7 @@
         </div>
       </div>
 
-      <div class="process-step">
+      <div class="process-step" data-reveal>
         <div class="step-num">4</div>
         <div class="step-content">
           <div class="step-title">Installation</div>
@@ -1311,7 +1322,7 @@
         </div>
       </div>
 
-      <div class="process-step">
+      <div class="process-step" data-reveal>
         <div class="step-num">5</div>
         <div class="step-content">
           <div class="step-title">Handover &amp; Support</div>
@@ -1330,27 +1341,27 @@
 
     <div class="mfr-tier-label">New installations</div>
     <div class="manufacturers-grid">
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://static.wixstatic.com/media/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png/v1/fill/w_157,h_51,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png" alt="Pyronix" onerror="this.style.display='none'">
         <div class="manufacturer-name">Pyronix</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://texecom-live.s3.eu-west-2.amazonaws.com/wp-content/uploads/2022/10/27150648/Texecom-Logo-Black.svg" alt="Texecom" onerror="this.style.display='none'">
         <div class="manufacturer-name">Texecom</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <div class="manufacturer-name-only">HKC</div>
         <div class="manufacturer-sub">Security Systems</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://www.paxton-access.com/wp-content/uploads/2018/12/paxton-logo.svg" alt="Paxton" onerror="this.style.display='none'">
         <div class="manufacturer-name">Paxton</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://www.dahuasecurity.com/images/logo.jpeg" alt="Dahua" onerror="this.style.display='none'">
         <div class="manufacturer-name">Dahua</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://c-tec.com/wp-content/uploads/2025/10/C-TEC_Header_Logo.png" alt="C-TEC" onerror="this.style.display='none'">
         <div class="manufacturer-name">C-TEC</div>
       </div>
@@ -1358,27 +1369,27 @@
 
     <div class="mfr-tier-label mfr-secondary">Also service &amp; maintain</div>
     <div class="manufacturers-grid">
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Honeywell_logo.svg" alt="Honeywell" onerror="this.style.display='none'">
         <div class="manufacturer-name">Honeywell</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <div class="manufacturer-name-only">Scantronic</div>
         <div class="manufacturer-sub">Eaton Group</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Eaton_Corporation_logo.svg" alt="Eaton" onerror="this.style.display='none'">
         <div class="manufacturer-name">Eaton</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://www.visonic.com/-/media/project/jci-global/security/visonic/visonic-logo/visonic-logo-v5.png?la=en&h=41&w=125&hash=E3ED508544670F74849D98B445EDE768" alt="Visonic" onerror="this.style.display='none'">
         <div class="manufacturer-name">Visonic</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" alt="Bosch" onerror="this.style.display='none'">
         <div class="manufacturer-name">Bosch</div>
       </div>
-      <div class="manufacturer-box">
+      <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://www.fike.com/static/images/fike-logo.0d795bd575bf.svg" alt="Fike" onerror="this.style.display='none'">
         <div class="manufacturer-name">Fike</div>
       </div>
@@ -1389,7 +1400,7 @@
 
 <!-- REVIEWS — customer testimonial cards -->
 <section class="reviews-section">
-  <div class="reviews-top">
+  <div class="reviews-top" data-reveal>
     <div>
       <div class="section-eyebrow">What Our Customers Say</div>
       <h2 class="section-heading">Trusted by homes &amp;<br>businesses across Sussex.</h2>
@@ -1397,27 +1408,27 @@
     <a href="ace-alarms-reviews.html" style="font-size:13px;font-weight:500;color:var(--red);display:flex;align-items:center;gap:4px;white-space:nowrap;align-self:flex-end;">All reviews <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
   <div class="reviews-score-bar">
-    <div class="score-card">
+    <div class="score-card" data-reveal>
       <div class="score-big">5.0</div>
       <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Google Reviews</div></div>
     </div>
-    <div class="score-card">
+    <div class="score-card" data-reveal>
       <div class="score-big">10</div>
       <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Checkatrade Score</div></div>
     </div>
   </div>
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review-card" data-reveal>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"Absolutely brilliant from start to finish. The engineer was professional, tidy and took the time to explain everything. Would not hesitate to recommend."</div>
       <div><div class="review-author">S. Hartley</div><div class="review-type">Residential · Burgess Hill</div></div>
     </div>
-    <div class="review-card">
+    <div class="review-card" data-reveal>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"We've used Ace Alarms across three of our sites now. Reliable, responsive and they actually answer the phone — which matters more than you'd think."</div>
       <div><div class="review-author">M. Connolly</div><div class="review-type">Commercial</div></div>
     </div>
-    <div class="review-card">
+    <div class="review-card" data-reveal>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"Prompt response to our alarm fault, engineer on site within two hours. Sorted, tested and all paperwork updated. Exactly what you want from a maintenance contract."</div>
       <div><div class="review-author">T. Brennan</div><div class="review-type">Commercial · Checkatrade</div></div>
@@ -1426,7 +1437,7 @@
 </section>
 
 <!-- CTA BAND — red call-to-action strip -->
-<section class="cta-band">
+<section class="cta-band" data-reveal>
   <div class="section-eyebrow">Get Started</div>
   <h2 class="cta-heading">Ready to protect your property?</h2>
   <p class="cta-sub">Book a free, no-obligation site survey. Our surveyor comes to you, assesses your needs and provides a clear quote — no pressure, no hard sell.</p>
@@ -1502,6 +1513,7 @@
     });
   });
 </script>
+<script src="assets/enhance.js" defer></script>
 
 </body>
 </html>
