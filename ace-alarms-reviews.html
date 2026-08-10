@@ -66,7 +66,10 @@
 
   /* SCORE BAR */
   .reviews-score-bar { display: flex; gap: 16px; flex-wrap: wrap; }
-  .score-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--red); padding: 18px 24px; display: flex; align-items: center; gap: 14px; }
+  .score-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--red); padding: 18px 24px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: background 0.2s, transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1); }
+  .score-card:hover { background: var(--off-white); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(17,17,17,0.08); }
+  .score-card-arrow { margin-left: auto; flex-shrink: 0; color: var(--muted); transition: color 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); }
+  .score-card:hover .score-card-arrow { color: var(--red); transform: translate(2px, -2px); }
   .score-big { font-family: 'Montserrat',sans-serif; font-size: 38px; font-weight: 700; color: var(--black); line-height: 1; }
   .score-detail { display: flex; flex-direction: column; gap: 3px; }
   .score-stars { color: var(--red); font-size: 14px; letter-spacing: 2px; }
@@ -176,7 +179,7 @@
     <a href="index.html">Home</a>
     <a href="ace-alarms-residential.html">Residential</a>
     <a href="ace-alarms-commercial.html">Commercial</a>
-    
+    <a href="ace-alarms-about.html">About Us</a>
     <a href="ace-alarms-reviews.html" class="active">Reviews</a>
     <a href="ace-alarms-contact.html" class="nav-cta">Contact Us</a>
   </div>
@@ -188,7 +191,7 @@
   <a href="index.html">Home</a>
   <a href="ace-alarms-residential.html">Residential</a>
   <a href="ace-alarms-commercial.html">Commercial</a>
-  
+  <a href="ace-alarms-about.html">About Us</a>
   <a href="ace-alarms-reviews.html">Reviews</a>
   <a href="ace-alarms-contact.html" class="mobile-cta">Contact Us</a>
 </div>
@@ -214,14 +217,17 @@
     <h1 class="page-title">Don't take our word<br>for it. Take <span>theirs.</span></h1>
     <p class="page-subtitle">Every review below comes from a real customer — homeowners and businesses across Sussex and Surrey. Our reputation is built one job at a time, and we intend to keep it that way.</p>
     <div class="reviews-score-bar">
-      <div class="score-card">
+      <!-- PLACEHOLDER: replace href with the company's actual Google Business Profile review link -->
+      <a href="https://www.google.com/search?q=Ace+Alarms+%26+Security+Systems+Burgess+Hill+reviews" target="_blank" rel="noopener" class="score-card">
         <div class="score-big">5.0</div>
         <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Google Reviews</div></div>
-      </div>
-      <div class="score-card">
+        <svg class="score-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="https://www.checkatrade.com/trades/acealarmsandsecuritysystems/reviews" target="_blank" rel="noopener" class="score-card">
         <div class="score-big">10</div>
         <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Checkatrade Score</div></div>
-      </div>
+        <svg class="score-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
     </div>
   </div>
 </section>

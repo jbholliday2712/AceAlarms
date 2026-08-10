@@ -90,6 +90,7 @@
 .process-steps > [data-reveal]:nth-child(5) { transition-delay: 280ms; }
 .services-grid > [data-reveal]:nth-child(6),
 .manufacturers-grid > [data-reveal]:nth-child(6) { transition-delay: 350ms; }
+.manufacturers-grid > [data-reveal]:nth-child(7) { transition-delay: 420ms; }
 
 /* ── Reduced motion — swap movement for a plain, immediate state ── */
 @media (prefers-reduced-motion: reduce) {

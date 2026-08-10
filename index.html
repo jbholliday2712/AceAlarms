@@ -653,20 +653,9 @@
     text-align: center;
     margin-bottom: 36px;
   }
-  .mfr-tier-label {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 1px;
-    padding: 0 2px;
-    opacity: 0.7;
-  }
-  .mfr-secondary { margin-top: 3px; }
   .manufacturers-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -745,7 +734,21 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.3s var(--ease-out, ease-out), box-shadow 0.3s var(--ease-out, ease-out);
   }
+  .score-card:hover {
+    background: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(17,17,17,0.08);
+  }
+  .score-card-arrow {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s var(--ease-out, ease-out);
+  }
+  .score-card:hover .score-card-arrow { color: var(--red); transform: translate(2px, -2px); }
   .score-big {
     font-family: 'Montserrat', sans-serif;
     font-size: 38px;
@@ -1085,7 +1088,7 @@
     <a href="index.html" class="active">Home</a>
     <a href="ace-alarms-residential.html">Residential</a>
     <a href="ace-alarms-commercial.html">Commercial</a>
-    
+    <a href="ace-alarms-about.html">About Us</a>
     <a href="ace-alarms-reviews.html">Reviews</a>
     <a href="ace-alarms-contact.html" class="nav-cta">Contact Us</a>
   </div>
@@ -1101,7 +1104,7 @@
   <a href="index.html">Home</a>
   <a href="ace-alarms-residential.html">Residential</a>
   <a href="ace-alarms-commercial.html">Commercial</a>
-  
+  <a href="ace-alarms-about.html">About Us</a>
   <a href="ace-alarms-reviews.html">Reviews</a>
   <a href="ace-alarms-contact.html" class="mobile-cta">Contact Us</a>
 </div>
@@ -1302,7 +1305,7 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <div class="step-title">Site Survey</div>
-          <div class="step-desc">One of our engineers visits your property. No obligation. We assess the site and understand what you need.</div>
+          <div class="step-desc">One of our surveyors visits your property. No obligation. We assess the site and understand what you need.</div>
         </div>
       </div>
 
@@ -1337,9 +1340,8 @@
 <!-- MANUFACTURERS — brands we install (primary row) and service/maintain (secondary row) -->
 <section class="manufacturers-section">
   <div class="manufacturers-inner">
-    <div class="manufacturers-label">Systems we install &amp; service</div>
+    <div class="manufacturers-label">Systems we work on &amp; install</div>
 
-    <div class="mfr-tier-label">New installations</div>
     <div class="manufacturers-grid">
       <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://static.wixstatic.com/media/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png/v1/fill/w_157,h_51,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cf70bd_43fd87e977cf447f99b24bc3a999ff04~mv2.png" alt="Pyronix" onerror="this.style.display='none'">
@@ -1358,17 +1360,21 @@
         <div class="manufacturer-name">Paxton</div>
       </div>
       <div class="manufacturer-box" data-reveal>
-        <img class="manufacturer-logo" src="https://www.dahuasecurity.com/images/logo.jpeg" alt="Dahua" onerror="this.style.display='none'">
+        <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Dahua_Technology_logo.svg" alt="Dahua" onerror="this.style.display='none'">
         <div class="manufacturer-name">Dahua</div>
       </div>
       <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://c-tec.com/wp-content/uploads/2025/10/C-TEC_Header_Logo.png" alt="C-TEC" onerror="this.style.display='none'">
         <div class="manufacturer-name">C-TEC</div>
       </div>
-    </div>
-
-    <div class="mfr-tier-label mfr-secondary">Also service &amp; maintain</div>
-    <div class="manufacturers-grid">
+      <div class="manufacturer-box" data-reveal>
+        <img class="manufacturer-logo" src="https://www.orisec.co.uk/wp-content/uploads/2020/07/logo-uk.png" alt="Orisec" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Orisec</div>
+      </div>
+      <div class="manufacturer-box" data-reveal>
+        <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Ajax_Systems_logo.jpg" alt="Ajax" onerror="this.style.display='none'">
+        <div class="manufacturer-name">Ajax</div>
+      </div>
       <div class="manufacturer-box" data-reveal>
         <img class="manufacturer-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Honeywell_logo.svg" alt="Honeywell" onerror="this.style.display='none'">
         <div class="manufacturer-name">Honeywell</div>
@@ -1408,14 +1414,17 @@
     <a href="ace-alarms-reviews.html" style="font-size:13px;font-weight:500;color:var(--red);display:flex;align-items:center;gap:4px;white-space:nowrap;align-self:flex-end;">All reviews <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
   <div class="reviews-score-bar">
-    <div class="score-card" data-reveal>
+    <!-- PLACEHOLDER: replace href with the company's actual Google Business Profile review link -->
+    <a href="https://www.google.com/search?q=Ace+Alarms+%26+Security+Systems+Burgess+Hill+reviews" target="_blank" rel="noopener" class="score-card" data-reveal>
       <div class="score-big">5.0</div>
       <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Google Reviews</div></div>
-    </div>
-    <div class="score-card" data-reveal>
+      <svg class="score-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+    <a href="https://www.checkatrade.com/trades/acealarmsandsecuritysystems/reviews" target="_blank" rel="noopener" class="score-card" data-reveal>
       <div class="score-big">10</div>
       <div class="score-detail"><div class="score-stars">★★★★★</div><div class="score-source">Checkatrade Score</div></div>
-    </div>
+      <svg class="score-card-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
   </div>
   <div class="reviews-grid">
     <div class="review-card" data-reveal>
